@@ -1,0 +1,23 @@
+{
+  "name": "v-scheduler",
+  "version": "0.0.1",
+  "description": "An easy to use, feature rich calendar / scheduler for Vue",
+  "main": "index.js",
+  "scripts": {
+    "build": "bili --name index --plugin vue --vue.css false"
+  },
+  "keywords": [
+    "vue",
+    "calendar",
+    "scheduler"
+  ],
+  "files": [
+    "dist/*"
+  ],
+  "private": false,
+  "author": "Liam Southwell",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.24.0"
+  }
+}
