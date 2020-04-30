@@ -19,5 +19,14 @@
   "license": "ISC",
   "dependencies": {
     "moment": "^2.24.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liamso/V-Scheduler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Liamso/V-Scheduler/issues"
+  },
+  "homepage": "https://github.com/Liamso/V-Scheduler#readme"
 }
