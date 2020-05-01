@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import moment from 'moment';
-
 export default {
     props: ['event', 'pixelsPerMinute', 'day', 'hours'],
     methods: {

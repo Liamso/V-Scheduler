@@ -46,12 +46,12 @@
 </style>
 
 <script>
-    import moment from 'moment';
     import HourColumn from './HourColumn.vue';
     import CalendarHead from './CalendarHead.vue';
     import DayIncrement from './DayIncrement.vue';
 
     export default {
+        name: 'VueScheduler',
         components: {HourColumn, CalendarHead, DayIncrement},
         props: ['weekDays', 'openHour', 'closeHour', 'incrementSize', 'events', 'format', 'startDate', 'headerHeight', 'users'],
         data: () => ({

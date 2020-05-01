@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import CalendarEvent from './CalendarEvent.vue';
 
 export default {
