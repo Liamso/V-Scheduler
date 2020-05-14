@@ -1,9 +1,11 @@
 <template>
-    <div class="body-day-user-event" :style="'width: calc(' + 100 / users.length + '% - 1px); top: ' + calculateEventOffset() + 'px; height: ' + calculateEventHeight() + 'px; background-color: ' + event.color + ';'">
-        <div class="body-day-user-event-text">
-            <div class="body-day-user-event-name">{{event.name}}</div>
-            <div class="body-day-user-event-timings"> {{generatePrettyTimings(event)}} </div>
-            <div class="body-day-user-event-description-text">{{event.description}}</div>
+    <div class="body-day-user-event-relative">
+        <div class="body-day-user-event" :style="'top: ' + calculateEventOffset() + 'px; height: ' + calculateEventHeight() + 'px; background-color: ' + event.color + ';'">
+            <div class="body-day-user-event-text">
+                <div class="body-day-user-event-name">{{event.name}}</div>
+                <div class="body-day-user-event-timings"> {{generatePrettyTimings(event)}} </div>
+                <div class="body-day-user-event-description-text">{{event.description}}</div>
+            </div>
         </div>
     </div>
 </template>
@@ -12,7 +14,7 @@
 import moment from 'moment';
 
 export default {
-    props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat', 'users'],
+    props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat'],
     methods: {
         generatePrettyTimings: function () {
             if (this.eventTimeFormat) {
@@ -37,9 +39,13 @@ export default {
 </script>
 
 <style>
+    .body-day-user-event-relative {
+        position: relative;
+    }
+
     .body-day-user-event-name {
-            font-weight: 700;
-        }
+        font-weight: 700;
+    }
 
     .body-day-user-event-timings {
         margin-top: 3px;
@@ -56,6 +62,7 @@ export default {
     }
 
     .body-day-user-event {
+        width: calc(100% - 1px);
         background-color: black;
         flex: 1;
         margin-right: 0.125px;
