@@ -21,6 +21,7 @@
                 v-if="mouseDown"
                 :style="selectionBoxStyling"
                 class="selectBox"
+                ref="selectBox"
             >
             </div>
         </div>
@@ -138,6 +139,7 @@ export default {
             window.removeEventListener('mousemove', this.mouseMove)
             window.removeEventListener('mouseup', this.mouseUp)
 
+            if (!this.endPoint.x) return {}
             // Emit currently selected list
             this.$emit('times-selected', this.selectedTimeRange());
 
@@ -185,6 +187,8 @@ export default {
     computed: {
         selectionBox () {
             if (!this.mouseDown) return {}
+            if (!this.endPoint.x) return {}
+
             const clientRect = this.activeRef.getBoundingClientRect()
             const scroll = this.getScroll()
 
@@ -245,7 +249,7 @@ export default {
         background-color: rgba(212, 212, 212, 0.5);
         border: 1px solid #8b8b8b;
         position: absolute;
-        z-index: 49;
+        z-index: 10;
     }
 
     .no-select {
@@ -274,7 +278,7 @@ export default {
     .body-day-user-column {
         flex: 1;
         border-left: 1px solid #e0e0e0;
-        z-index: 30;
+        z-index: 9;
     }
 
     .body-day-user-column:first-of-type {
@@ -313,7 +317,7 @@ export default {
     }
 
     .day-increment { 
-        z-index: 50;
+        z-index: 10;
     }
 
     .day-increment.on-hour:first-of-type::before {

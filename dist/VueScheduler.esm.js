@@ -393,7 +393,8 @@ var script$3 = {
     mouseUp: function (event) {
       // Remove event listeners
       window.removeEventListener('mousemove', this.mouseMove);
-      window.removeEventListener('mouseup', this.mouseUp); // Emit currently selected list
+      window.removeEventListener('mouseup', this.mouseUp);
+      if (!this.endPoint.x) return {}; // Emit currently selected list
 
       this.$emit('times-selected', this.selectedTimeRange()); // Reset state
 
@@ -437,6 +438,7 @@ var script$3 = {
   computed: {
     selectionBox() {
       if (!this.mouseDown) return {};
+      if (!this.endPoint.x) return {};
       const clientRect = this.activeRef.getBoundingClientRect();
       const scroll = this.getScroll(); // Calculate the actual values for the current mouse cursor
 
@@ -499,7 +501,7 @@ var script$3 = {
   }
 };
 
-var css_248z$3 = ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:49}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:30}.body-day-user-column:first-of-type{border-left:none!important}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:50}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}";
+var css_248z$3 = ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:10}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:9}.body-day-user-column:first-of-type{border-left:none!important}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:10}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}";
 styleInject(css_248z$3);
 
 /* script */
@@ -534,6 +536,8 @@ var __vue_render__$3 = function () {
         style: 'height: ' + _vm.incrementHeight + 'px;'
       });
     }), _vm._v(" "), _vm.mouseDown ? _c('div', {
+      ref: "selectBox",
+      refInFor: true,
       staticClass: "selectBox",
       style: _vm.selectionBoxStyling
     }) : _vm._e()], 2);
