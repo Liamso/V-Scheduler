@@ -1,12 +1,10 @@
 // Import vue component
 import component from '@/VueScheduler.vue';
-
 // install function executed by Vue.use()
 const install = function installVueScheduler(Vue) {
   if (install.installed) return;
   install.installed = true;
   Vue.component('VueScheduler', component);
-  Vue.prototype.moment = moment;
 };
 
 // Create module definition for Vue.use()

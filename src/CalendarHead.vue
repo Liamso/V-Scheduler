@@ -8,9 +8,9 @@
                 </div>
 
                 <div  class="day-column-day">
-                    <button :class="day.isSame(now, 'day') ? 'day-column-button day-column-button-today' : 'day-column-button'" >
+                    <div :class="day.isSame(now, 'day') ? 'day-column-button day-column-button-today' : 'day-column-button'" >
                         <span class="day-column-button-content" >{{day.format('D')}}</span>
-                    </button>
+                    </div>
                 </div>
 
                 <div class="day-column-fill"> 
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     props: ['users', 'days', 'headerHeight'],
     data: () => ({
@@ -58,6 +60,7 @@ export default {
     }
 
     .day-column-button {
+            background-color: #f4f4f4ba;
             height: 56px;
             border-radius: 50%;
             width: 56px;

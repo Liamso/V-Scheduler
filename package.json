@@ -1,6 +1,6 @@
 {
-  "name": "VueScheduler",
-  "version": "0.0.1",
+  "name": "vue-calendar-scheduler",
+  "version": "0.0.10",
   "description": "An easy to use, feature rich calendar / scheduler for Vue",
   "author": "Liam Southwell",
   "keywords": [
@@ -25,7 +25,8 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "rollup-plugin-postcss": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -39,6 +40,7 @@
     "minimist": "^1.2.5",
     "rollup": "^2.7.3",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-css-only": "^2.0.0",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-vue": "^5.1.6",
     "vue": "^2.6.11",
@@ -46,6 +48,10 @@
   },
   "peerDependencies": {
     "vue": "^2.6.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Liamso/V-Scheduler.git"
   },
   "engines": {
     "node": ">=10"

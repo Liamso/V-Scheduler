@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     props: ['hours', 'paddingPixels', 'incrementHeight', 'headerHeight']
 }

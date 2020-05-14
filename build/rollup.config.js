@@ -9,6 +9,7 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 import moment from 'moment';
+import postcss from 'rollup-plugin-postcss'
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -36,7 +37,7 @@ const baseConfig = {
       'process.env.ES_BUILD': JSON.stringify('false'),
     },
     vue: {
-      css: true,
+      css: false,
       template: {
         isProduction: true,
       },
@@ -54,6 +55,7 @@ const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
   'vue',
+  'moment',
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -62,6 +64,7 @@ const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
   vue: 'Vue',
+  moment: 'moment',
 };
 
 // Customize configs for individual targets
@@ -76,6 +79,9 @@ if (!argv.format || argv.format === 'es') {
       exports: 'named',
     },
     plugins: [
+      postcss({
+        plugins: []
+      }),
       replace({
         ...baseConfig.plugins.replace,
         'process.env.ES_BUILD': JSON.stringify('true'),

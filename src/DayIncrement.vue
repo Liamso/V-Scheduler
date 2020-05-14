@@ -33,12 +33,14 @@
             >
                 <calendar-event
                     v-for="event in filterEventsToDateAndUser(user.id)"
-                    @mousedown.stop="$emit('event-click', event)"
+                    v-on:mousedown.native.stop="$emit('event-click', event)"
                     :event=event
                     :day=day
                     :hours=hours
+                    :users=users
                     :pixelsPerMinute=pixelsPerMinute()
                     :key="event.id"
+                    :eventTimeFormat=eventTimeFormat
                 />
             </div>
         </div>
@@ -46,11 +48,12 @@
 </template>
 
 <script>
+import moment from 'moment';
 import CalendarEvent from './CalendarEvent.vue';
 
 export default {
     components: {CalendarEvent},
-    props: ['hours', 'incrementSize', 'incrementHeight', 'users', 'events', 'day', 'calendarHeight', 'paddingPixels'],
+    props: ['hours', 'incrementSize', 'incrementHeight', 'users', 'events', 'day', 'calendarHeight', 'paddingPixels', 'eventTimeFormat'],
     data: () => ({
         'mouseDown': false,
         'selectBoxStyle': '',
@@ -89,6 +92,7 @@ export default {
         beginSelect: function (event, id) {
             this.mouseDown = true;
             this.activeRef = this.$refs['selectAnchor' + id][0];
+            this.clickedUser = id;
             this.startPoint = {
                 x: event.pageX,
                 y: event.pageY
@@ -145,6 +149,13 @@ export default {
         },
 
         getScroll : function () {
+            if (typeof document === 'undefined') {
+                return {
+                    x: 0,
+                    y: 0
+                }
+            }
+            
             return {
                 x: this.activeRef.scrollLeft || document.body.scrollLeft || document.documentElement.scrollLeft,
                 y: this.activeRef.scrollTop || document.body.scrollTop || document.documentElement.scrollTop
@@ -165,8 +176,9 @@ export default {
             endTime = moment(this.day).hour(endTime.hour()).minute(endTime.minute());
 
             return {
-                startTime: startTime,
-                endTime: endTime,
+                start: startTime,
+                end: endTime,
+                user_id: this.clickedUser,
             }
         },
     },
@@ -282,6 +294,7 @@ export default {
     .events-users-column {
         flex: 1;
         width: 100%;
+        overflow: hidden;
     }
 
     .day-increment.on-hour:before {
