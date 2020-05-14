@@ -11,7 +11,7 @@
             :key="user.id"
         >
             <div 
-                :class="hour.onHour ? 'day-increment on-hour' : 'day-increment'" 
+                :class="hourClass(hour)" 
                 v-for="hour in hours" 
                 :key=hour.time 
                 :style="'height: ' + incrementHeight + 'px;'"
@@ -183,6 +183,12 @@ export default {
                 user_id: this.clickedUser,
             }
         },
+        
+        hourClass (hour) {
+            var str = hour.onHour ? 'day-increment on-hour ' : 'day-increment ';
+            str += hour == this.hours[this.hours.length-1] ? 'last-day-increment' : '';
+            return str;
+        },
     },
     computed: {
         selectionBox () {
@@ -283,6 +289,10 @@ export default {
 
     .body-day-user-column:first-of-type {
         border-left: none !important;
+    }
+
+    .last-day-increment {
+        background-color: rgba(0,0,0,0);
     }
 
     .events-column {
