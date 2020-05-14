@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Install | Vue Calendar Scheduler</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/V-Scheduler/favicon.png">
+    <meta name="description" content="An easy to use Vue component for user schedules">
+    <link rel="preload" href="/V-Scheduler/assets/css/0.styles.0566c008.css" as="style"><link rel="preload" href="/V-Scheduler/assets/js/app.7ad55524.js" as="script"><link rel="preload" href="/V-Scheduler/assets/js/3.f8e1f3fc.js" as="script"><link rel="preload" href="/V-Scheduler/assets/js/10.36447aac.js" as="script"><link rel="prefetch" href="/V-Scheduler/assets/js/1.d4e5f125.js"><link rel="prefetch" href="/V-Scheduler/assets/js/4.36563bf9.js"><link rel="prefetch" href="/V-Scheduler/assets/js/5.800c22ae.js"><link rel="prefetch" href="/V-Scheduler/assets/js/6.0cd7f92d.js"><link rel="prefetch" href="/V-Scheduler/assets/js/7.047529b8.js"><link rel="prefetch" href="/V-Scheduler/assets/js/8.95208fc5.js"><link rel="prefetch" href="/V-Scheduler/assets/js/9.92800713.js">
+    <link rel="stylesheet" href="/V-Scheduler/assets/css/0.styles.0566c008.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/V-Scheduler/" class="home-link router-link-active"><!----> <span class="site-name">Vue Calendar Scheduler</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/V-Scheduler/getting-started/" class="active sidebar-link">Getting Started</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/V-Scheduler/getting-started/#install" class="sidebar-link">Install</a></li><li class="sidebar-sub-header"><a href="/V-Scheduler/getting-started/#basic-usage" class="sidebar-link">Basic Usage</a></li></ul></li><li><a href="/V-Scheduler/configuration/" class="sidebar-link">Configuration</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="install"><a href="#install" class="header-anchor">#</a> Install</h2> <p>Install using npm:</p> <p><code>npm install vue-calendar-scheduler</code></p> <h2 id="basic-usage"><a href="#basic-usage" class="header-anchor">#</a> Basic Usage</h2> <p>The minimum config to get the scheduler up and running is below. More detailed explanations of properties and available options are in the <a href="/options">options</a> page.</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-scheduler</span>
+    <span class="token attr-name">:users</span><span class="token attr-value"><span class="token punctuation">=</span>users</span>
+    <span class="token attr-name">:openingTimes</span><span class="token attr-value"><span class="token punctuation">=</span>openingTimes</span>
+    <span class="token attr-name">:events</span><span class="token attr-value"><span class="token punctuation">=</span>events</span>
+    <span class="token attr-name">:format</span><span class="token attr-value"><span class="token punctuation">=</span>format</span>
+    <span class="token attr-name">:startDate</span><span class="token attr-value"><span class="token punctuation">=</span>startDate</span>
+    <span class="token attr-name">@times-selected</span><span class="token attr-value"><span class="token punctuation">=</span>timesSelected</span>
+    <span class="token attr-name">@event-click</span><span class="token attr-value"><span class="token punctuation">=</span>eventClicked</span>
+<span class="token punctuation">/&gt;</span></span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> VueScheduler <span class="token keyword">from</span> <span class="token string">'vue-calendar-scheduler'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    components<span class="token operator">:</span> <span class="token punctuation">{</span>VueScheduler<span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">data</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'format'</span><span class="token operator">:</span> <span class="token string">'week'</span><span class="token punctuation">,</span>
+        <span class="token string">'startDate'</span><span class="token operator">:</span> <span class="token string">'2020-05-03'</span><span class="token punctuation">,</span>
+        <span class="token string">'openingTimes'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'open'</span><span class="token operator">:</span> <span class="token string">'0900'</span><span class="token punctuation">,</span>
+          <span class="token string">'close'</span><span class="token operator">:</span> <span class="token string">'1800'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'users'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token string">'id'</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token string">'initials'</span><span class="token operator">:</span> <span class="token string">'AS'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">'events'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                id<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                user_id<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                name<span class="token operator">:</span> <span class="token string">'Sample Event Name #1'</span><span class="token punctuation">,</span>
+                start<span class="token operator">:</span> <span class="token string">'1970-01-01T09:00:00+1000'</span><span class="token punctuation">,</span>
+                end<span class="token operator">:</span> <span class="token string">'1970-01-01T12:15:00+1000'</span><span class="token punctuation">,</span>
+                color<span class="token operator">:</span> <span class="token string">'#32a852'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">timesSelected</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+        <span class="token function-variable function">eventClicked</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/V-Scheduler/configuration/">
+        Configuration
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/V-Scheduler/assets/js/app.7ad55524.js" defer></script><script src="/V-Scheduler/assets/js/3.f8e1f3fc.js" defer></script><script src="/V-Scheduler/assets/js/10.36447aac.js" defer></script>
+  </body>
+</html>
