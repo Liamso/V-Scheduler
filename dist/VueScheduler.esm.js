@@ -239,7 +239,7 @@ const __vue_component__$1 = normalizeComponent({
 
 //
 var script$2 = {
-  props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat', 'users'],
+  props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat'],
   methods: {
     generatePrettyTimings: function () {
       if (this.eventTimeFormat) {
@@ -256,12 +256,12 @@ var script$2 = {
     },
     calculateEventHeight: function () {
       var eventLength = moment.duration(moment(this.event.end).diff(moment(this.event.start))).asMinutes();
-      return (eventLength * this.pixelsPerMinute).toPrecision(15);
+      return (eventLength * this.pixelsPerMinute).toPrecision(15) - 1;
     }
   }
 };
 
-var css_248z$2 = ".body-day-user-event-name{font-weight:700}.body-day-user-event-timings{margin-top:3px}.body-day-user-event-description-text{font-size:12px;margin-top:8px}.body-day-user-event-text{padding:8px;color:#fff}.body-day-user-event{background-color:#000;flex:1;margin-right:.125px;margin-left:.125px;position:absolute;border-radius:4px;z-index:50}";
+var css_248z$2 = ".body-day-user-event-relative{position:relative}.body-day-user-event-name{font-weight:700}.body-day-user-event-timings{margin-top:3px}.body-day-user-event-description-text{font-size:12px;margin-top:8px}.body-day-user-event-text{padding:8px;color:#fff}.body-day-user-event{width:calc(100% - 1px);background-color:#000;flex:1;margin-right:.125px;margin-left:.125px;position:absolute;border-radius:4px;z-index:50}";
 styleInject(css_248z$2);
 
 /* script */
@@ -276,8 +276,10 @@ var __vue_render__$2 = function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
+    staticClass: "body-day-user-event-relative"
+  }, [_c('div', {
     staticClass: "body-day-user-event",
-    style: 'width: calc(' + 100 / _vm.users.length + '% - 1px); top: ' + _vm.calculateEventOffset() + 'px; height: ' + _vm.calculateEventHeight() + 'px; background-color: ' + _vm.event.color + ';'
+    style: 'top: ' + _vm.calculateEventOffset() + 'px; height: ' + _vm.calculateEventHeight() + 'px; background-color: ' + _vm.event.color + ';'
   }, [_c('div', {
     staticClass: "body-day-user-event-text"
   }, [_c('div', {
@@ -286,7 +288,7 @@ var __vue_render__$2 = function () {
     staticClass: "body-day-user-event-timings"
   }, [_vm._v(" " + _vm._s(_vm.generatePrettyTimings(_vm.event)) + " ")]), _vm._v(" "), _c('div', {
     staticClass: "body-day-user-event-description-text"
-  }, [_vm._v(_vm._s(_vm.event.description))])])]);
+  }, [_vm._v(_vm._s(_vm.event.description))])])])]);
 };
 
 var __vue_staticRenderFns__$2 = [];
@@ -432,6 +434,12 @@ var script$3 = {
         end: endTime,
         user_id: this.clickedUser
       };
+    },
+
+    hourClass(hour) {
+      var str = hour.onHour ? 'day-increment on-hour ' : 'day-increment ';
+      str += hour == this.hours[this.hours.length - 1] ? 'last-day-increment' : '';
+      return str;
     }
 
   },
@@ -501,7 +509,7 @@ var script$3 = {
   }
 };
 
-var css_248z$3 = ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:10}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:9}.body-day-user-column:first-of-type{border-left:none!important}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:10}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}";
+var css_248z$3 = ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:10}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:9}.body-day-user-column:first-of-type{border-left:none!important}.last-day-increment{background-color:rgba(0,0,0,0)}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:10}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}";
 styleInject(css_248z$3);
 
 /* script */
@@ -532,7 +540,7 @@ var __vue_render__$3 = function () {
     }, [_vm._l(_vm.hours, function (hour) {
       return _c('div', {
         key: hour.time,
-        class: hour.onHour ? 'day-increment on-hour' : 'day-increment',
+        class: _vm.hourClass(hour),
         style: 'height: ' + _vm.incrementHeight + 'px;'
       });
     }), _vm._v(" "), _vm.mouseDown ? _c('div', {

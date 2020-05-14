@@ -215,7 +215,7 @@ var __vue_component__$1 = normalizeComponent({
   staticRenderFns: __vue_staticRenderFns__$1
 }, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, createInjectorSSR, undefined);//
 var script$2 = {
-  props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat', 'users'],
+  props: ['event', 'pixelsPerMinute', 'day', 'hours', 'eventTimeFormat'],
   methods: {
     generatePrettyTimings: function generatePrettyTimings() {
       if (this.eventTimeFormat) {
@@ -232,7 +232,7 @@ var script$2 = {
     },
     calculateEventHeight: function calculateEventHeight() {
       var eventLength = moment.duration(moment(this.event.end).diff(moment(this.event.start))).asMinutes();
-      return (eventLength * this.pixelsPerMinute).toPrecision(15);
+      return (eventLength * this.pixelsPerMinute).toPrecision(15) - 1;
     }
   }
 };/* script */
@@ -247,9 +247,8 @@ var __vue_render__$2 = function __vue_render__() {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    staticClass: "body-day-user-event",
-    style: 'width: calc(' + 100 / _vm.users.length + '% - 1px); top: ' + _vm.calculateEventOffset() + 'px; height: ' + _vm.calculateEventHeight() + 'px; background-color: ' + _vm.event.color + ';'
-  }, [_vm._ssrNode("<div class=\"body-day-user-event-text\"><div class=\"body-day-user-event-name\">" + _vm._ssrEscape(_vm._s(_vm.event.name)) + "</div> <div class=\"body-day-user-event-timings\">" + _vm._ssrEscape(" " + _vm._s(_vm.generatePrettyTimings(_vm.event)) + " ") + "</div> <div class=\"body-day-user-event-description-text\">" + _vm._ssrEscape(_vm._s(_vm.event.description)) + "</div></div>")]);
+    staticClass: "body-day-user-event-relative"
+  }, [_vm._ssrNode("<div class=\"body-day-user-event\"" + _vm._ssrStyle(null, 'top: ' + _vm.calculateEventOffset() + 'px; height: ' + _vm.calculateEventHeight() + 'px; background-color: ' + _vm.event.color + ';', null) + "><div class=\"body-day-user-event-text\"><div class=\"body-day-user-event-name\">" + _vm._ssrEscape(_vm._s(_vm.event.name)) + "</div> <div class=\"body-day-user-event-timings\">" + _vm._ssrEscape(" " + _vm._s(_vm.generatePrettyTimings(_vm.event)) + " ") + "</div> <div class=\"body-day-user-event-description-text\">" + _vm._ssrEscape(_vm._s(_vm.event.description)) + "</div></div></div>")]);
 };
 
 var __vue_staticRenderFns__$2 = [];
@@ -257,8 +256,8 @@ var __vue_staticRenderFns__$2 = [];
 
 var __vue_inject_styles__$2 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-5513b79d_0", {
-    source: ".body-day-user-event-name{font-weight:700}.body-day-user-event-timings{margin-top:3px}.body-day-user-event-description-text{font-size:12px;margin-top:8px}.body-day-user-event-text{padding:8px;color:#fff}.body-day-user-event{background-color:#000;flex:1;margin-right:.125px;margin-left:.125px;position:absolute;border-radius:4px;z-index:50}",
+  inject("data-v-dcd86a44_0", {
+    source: ".body-day-user-event-relative{position:relative}.body-day-user-event-name{font-weight:700}.body-day-user-event-timings{margin-top:3px}.body-day-user-event-description-text{font-size:12px;margin-top:8px}.body-day-user-event-text{padding:8px;color:#fff}.body-day-user-event{width:calc(100% - 1px);background-color:#000;flex:1;margin-right:.125px;margin-left:.125px;position:absolute;border-radius:4px;z-index:50}",
     map: undefined,
     media: undefined
   });
@@ -269,7 +268,7 @@ var __vue_inject_styles__$2 = function __vue_inject_styles__(inject) {
 var __vue_scope_id__$2 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$2 = "data-v-5513b79d";
+var __vue_module_identifier__$2 = "data-v-dcd86a44";
 /* functional template */
 
 var __vue_is_functional_template__$2 = false;
@@ -405,6 +404,11 @@ var script$3 = {
         end: endTime,
         user_id: this.clickedUser
       };
+    },
+    hourClass: function hourClass(hour) {
+      var str = hour.onHour ? 'day-increment on-hour ' : 'day-increment ';
+      str += hour == this.hours[this.hours.length - 1] ? 'last-day-increment' : '';
+      return str;
     }
   },
   computed: {
@@ -484,7 +488,7 @@ var __vue_render__$3 = function __vue_render__() {
     style: 'height: calc(100% - ' + (_vm.incrementHeight + _vm.paddingPixels) + 'px);'
   }, [_vm._ssrNode(_vm._ssrList(_vm.users, function (user) {
     return "<div class=\"body-day-user-column no-select\">" + _vm._ssrList(_vm.hours, function (hour) {
-      return "<div" + _vm._ssrClass(null, hour.onHour ? 'day-increment on-hour' : 'day-increment') + _vm._ssrStyle(null, 'height: ' + _vm.incrementHeight + 'px;', null) + "></div>";
+      return "<div" + _vm._ssrClass(null, _vm.hourClass(hour)) + _vm._ssrStyle(null, 'height: ' + _vm.incrementHeight + 'px;', null) + "></div>";
     }) + " " + (_vm.mouseDown ? "<div class=\"selectBox\"" + _vm._ssrStyle(null, _vm.selectionBoxStyling, null) + "></div>" : "<!---->") + "</div>";
   }) + " "), _vm._ssrNode("<div class=\"events-column no-select\">", "</div>", _vm._l(_vm.users, function (user) {
     return _vm._ssrNode("<div class=\"events-users-column\">", "</div>", _vm._l(_vm.filterEventsToDateAndUser(user.id), function (event) {
@@ -514,8 +518,8 @@ var __vue_staticRenderFns__$3 = [];
 
 var __vue_inject_styles__$3 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-71f7041c_0", {
-    source: ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:10}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:9}.body-day-user-column:first-of-type{border-left:none!important}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:10}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}",
+  inject("data-v-486de4d6_0", {
+    source: ".selectBox{background-color:rgba(212,212,212,.5);border:1px solid #8b8b8b;position:absolute;z-index:10}.no-select{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.calendar-selected{background-color:#f5f5f5}.body-day-column{border-right:#b9b9b9 1px solid;flex:1;width:0;top:0;position:relative;display:flex;flex-direction:row}.body-day-user-column{flex:1;border-left:1px solid #e0e0e0;z-index:9}.body-day-user-column:first-of-type{border-left:none!important}.last-day-increment{background-color:rgba(0,0,0,0)}.events-column{display:flex;flex:1;position:absolute;top:0;bottom:0;left:0;right:0}.events-users-column{flex:1;width:100%;overflow:hidden}.day-increment.on-hour:before{border-top:1px solid transparent;box-shadow:0 -1px 0 #e0e0e0;content:\"\";display:block;height:1px}.day-increment.on-hour:last-of-type::before{border-top:1px solid transparent;box-shadow:0 -1px 0 #b9b9b9;content:\"\";display:block;height:1px}.day-increment{z-index:10}.day-increment.on-hour:first-of-type::before{border-top:none;box-shadow:none}",
     map: undefined,
     media: undefined
   });
@@ -526,7 +530,7 @@ var __vue_inject_styles__$3 = function __vue_inject_styles__(inject) {
 var __vue_scope_id__$3 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$3 = "data-v-71f7041c";
+var __vue_module_identifier__$3 = "data-v-486de4d6";
 /* functional template */
 
 var __vue_is_functional_template__$3 = false;

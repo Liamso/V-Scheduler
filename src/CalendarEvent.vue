@@ -32,7 +32,7 @@ export default {
 
         calculateEventHeight: function () {
             var eventLength = moment.duration(moment(this.event.end).diff(moment(this.event.start))).asMinutes(); 
-            return (eventLength * this.pixelsPerMinute).toPrecision(15);
+            return (eventLength * this.pixelsPerMinute).toPrecision(15) - 1;
         },
     }
 }
