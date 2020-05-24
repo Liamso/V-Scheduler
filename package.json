@@ -3,6 +3,7 @@
   "version": "0.0.13",
   "description": "An easy to use, feature rich calendar / scheduler for Vue",
   "author": "Liam Southwell",
+  "homepage": "https://liamso.github.io/V-Scheduler/",
   "keywords": [
     "vue",
     "calendar",
