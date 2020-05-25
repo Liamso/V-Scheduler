@@ -84,6 +84,12 @@ export default {
                 this.days = [];
                 this.setDays();
             }
+        },
+
+        startDate: function (val, old) {
+            if (val !== old) {
+                this.setDays();
+            }
         }
     },
     methods:{
