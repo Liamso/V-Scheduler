@@ -643,6 +643,7 @@ var script$4 = {
     },
     startDate: function (val, old) {
       if (val !== old) {
+        this.days = [];
         this.setDays();
       }
     }

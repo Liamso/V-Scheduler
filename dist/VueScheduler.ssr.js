@@ -581,6 +581,7 @@ var script$4 = {
     },
     startDate: function startDate(val, old) {
       if (val !== old) {
+        this.days = [];
         this.setDays();
       }
     }
@@ -704,7 +705,7 @@ var __vue_staticRenderFns__$4 = [];
 
 var __vue_inject_styles__$4 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-c9e7789a_0", {
+  inject("data-v-5f8d6626_0", {
     source: ".calendar{flex:1 1 60%;display:flex;position:relative;flex-direction:column}.calendar-body{display:flex;flex:1}",
     map: undefined,
     media: undefined
@@ -716,7 +717,7 @@ var __vue_inject_styles__$4 = function __vue_inject_styles__(inject) {
 var __vue_scope_id__$4 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$4 = "data-v-c9e7789a";
+var __vue_module_identifier__$4 = "data-v-5f8d6626";
 /* functional template */
 
 var __vue_is_functional_template__$4 = false;
