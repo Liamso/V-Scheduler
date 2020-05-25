@@ -634,6 +634,14 @@ var script$4 = {
     this.setDays();
   },
 
+  watch: {
+    format: function (val, old) {
+      if (val !== old && (val === 'week' || val === 'day')) {
+        this.days = [];
+        this.setDays();
+      }
+    }
+  },
   methods: {
     setOptions: function () {
       Object.keys(this.options).forEach(name => {

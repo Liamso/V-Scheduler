@@ -572,6 +572,14 @@ var script$4 = {
 
     this.setDays();
   },
+  watch: {
+    format: function format(val, old) {
+      if (val !== old && (val === 'week' || val === 'day')) {
+        this.days = [];
+        this.setDays();
+      }
+    }
+  },
   methods: {
     setOptions: function setOptions() {
       var _this = this;
@@ -691,7 +699,7 @@ var __vue_staticRenderFns__$4 = [];
 
 var __vue_inject_styles__$4 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-09c853b3_0", {
+  inject("data-v-722fe824_0", {
     source: ".calendar{flex:1 1 60%;display:flex;position:relative;flex-direction:column}.calendar-body{display:flex;flex:1}",
     map: undefined,
     media: undefined
@@ -703,7 +711,7 @@ var __vue_inject_styles__$4 = function __vue_inject_styles__(inject) {
 var __vue_scope_id__$4 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$4 = "data-v-09c853b3";
+var __vue_module_identifier__$4 = "data-v-722fe824";
 /* functional template */
 
 var __vue_is_functional_template__$4 = false;
